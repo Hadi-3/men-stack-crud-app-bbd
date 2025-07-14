@@ -1,9 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const Business = require('../models/business')
+// every thing in this file has /busnisses front
 
-router.get('/', (req, res) => {
-    res.send('do i work ?')
+
+// INDEX FOR ALL BUSINESSES
+router.get('/', async (req, res) => {
+    const allBusinesses = await Business.find()
+    console.log('allBusinesses', allBusinesses)
+    res.render('businesses/index.ejs', {allBusinesses: allBusinesses})
 })
 
 
@@ -23,5 +28,13 @@ router.post('/' , async (req, res) => {
     await Business.create(req.body)
     res.redirect('/businesses/new')
 })
+
+// SHOW ONE BUSINESS
+router.get('/:businessId' , async (req, res) => {
+const foundBusiness = await Business.findById(req.params.businessId)
+res.render('businesses/show.ejs', {foundBusiness: foundBusiness})
+})
+
+
 
 module.exports = router
