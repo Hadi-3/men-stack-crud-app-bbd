@@ -35,6 +35,9 @@ const foundBusiness = await Business.findById(req.params.businessId)
 res.render('businesses/show.ejs', {foundBusiness: foundBusiness})
 })
 
-
+router.delete('/:businessId', async(req, res) => {
+    await Business.findByIdAndDelete(req.params.businessId)
+    res.send('/businesses')
+})
 
 module.exports = router
