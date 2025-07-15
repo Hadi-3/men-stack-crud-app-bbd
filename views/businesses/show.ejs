@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Business Show Page</title>
 </head>
 <body>
-    <h1><%= foundBusiness.name %></h1>
+    <body>
+    		<h1><%= foundBusiness.name %></h1>
+		<% if (foundBusiness.isVerified) { %> ✅ Verified <% } %>
+
+		<p><strong>Category:</strong> <%= foundBusiness.category %></p>
+
+		<p><strong>Description:</strong></p>
+		<p><%= foundBusiness.description %></p>
+
+		<p><strong>Location:</strong> <%= foundBusiness.location %></p>
+
+		<p><strong>Phone:</strong> <%= foundBusiness.phoneNumber %></p>
+
+		<% if (foundBusiness.website) { %>
+		<p>
+			<strong>Website:</strong>
+			<a href="<%= foundBusiness.website %>" target="_blank">
+        <%= foundBusiness.website %>
+      </a>
+		</p>
+		<% } %>
+         <a class="businesses-index-link" href="/businesses">
+      <div class="index-link-text">Back to All Businesses</div>
+    </a>
+
+</body>
 </body>
 </html>
